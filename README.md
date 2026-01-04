@@ -26,14 +26,14 @@
 
 ✅ **Project structure**
 - ✅ Used the correct folder structure.
-- [ ] Merged both services into a single Git repository.
-- [ ] Created a public Git repository for your project.
-- [ ] Excluded IDE-specific configuration files and folders (e.g., `.idea/`, `.vscode/`, `.settings/`, `*.iml`).
-- [ ] Ready to place the link to your repository in the personal folder in Avalia.
+- ✅ Merged both services into a single Git repository.
+- ✅ Created a public Git repository for your project.
+- ✅ Excluded IDE-specific configuration files and folders (e.g., `.idea/`, `.vscode/`, `.settings/`, `*.iml`).
+- ✅ Ready to place the link to your repository in the personal folder in Avalia.
 
 ✅ **API testing**
 - ✅ Ran Postman tests using the provided [collection](./api-tests/introduction_to_microservices.postman_collection.json) and [sample MP3 file](./sample-mp3-file/mp3.zip).
 - ✅ Verified that all API tests pass.
 - ✅ Checked that all API responses conform to the [API response specification](./api-tests/api-response-specification.md).
-- [ ] Took screenshots of test results and compiled them into a single PDF or DOCX file.
-- [ ] Ready to place the test result PDF or DOCX file in the personal folder in Avalia.
+- ✅ Took screenshots of test results and compiled them into a single PDF or DOCX file.
+- ✅ Ready to place the test result PDF or DOCX file in the personal folder in Avalia.
