@@ -30,8 +30,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     // Log4j2 dependencies
     implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
@@ -39,8 +37,4 @@ dependencies {
     // Apache Tika for MP3 metadata extraction
     implementation 'org.apache.tika:tika-core:2.9.0'
     implementation 'org.apache.tika:tika-parsers-standard-package:2.9.0'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }

@@ -8,6 +8,7 @@ import chui.model.dto.UploadResourceResponseDto;
 import chui.model.entity.Resource;
 import chui.repository.ResourceRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,8 +62,15 @@ public class ResourceService {
     resourceRepository.deleteAllById(existingIds);
 
     if (!existingIds.isEmpty()) {
-      metadataApiClient.deleteMetadataByIds(ids);
+      String existingIdsCsv = toCsv(existingIds);
+      metadataApiClient.deleteMetadataByIds(existingIdsCsv);
     }
     return new DeleteResourcesResponseDto(existingIds);
+  }
+
+  private String toCsv(List<Long> ids) {
+    return ids.stream()
+        .map(String::valueOf)
+        .collect(Collectors.joining(","));
   }
 }

@@ -5,6 +5,10 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class Mp3ValidationService {
+
+  private static final String INVALID_MP3_FORMAT_MSG
+      = "Invalid file format: %s. Only MP3 files are allowed";
+
   public boolean isValidMp3(byte[] data) {
     if (data == null || data.length < 3) {
       log.warn("MP3 validation failed: data is null or too short");
@@ -17,15 +21,14 @@ public class Mp3ValidationService {
 
   public void validate(byte[] data, String contentType) {
     if (contentType == null || !contentType.equalsIgnoreCase("audio/mpeg")) {
-      log.warn("Attempted to upload file with invalid Content-Type: {}", contentType);
-      throw new InvalidMp3Exception(
-          "Invalid file format: " + (contentType != null ? contentType : "unknown")
-              + ". Only MP3 files are allowed");
+      var contentTypeValue = contentType != null ? contentType : "unknown";
+      log.warn("Attempted to upload file with invalid Content-Type: {}", contentTypeValue);
+      throw new InvalidMp3Exception(String.format(INVALID_MP3_FORMAT_MSG, contentTypeValue));
     }
+
     if (!isValidMp3(data)) {
       log.warn("Attempted to upload invalid MP3 file");
-      throw new InvalidMp3Exception(
-          "Invalid file format: " + contentType + ". Only MP3 files are allowed");
+      throw new InvalidMp3Exception(String.format(INVALID_MP3_FORMAT_MSG, contentType));
     }
   }
 }
