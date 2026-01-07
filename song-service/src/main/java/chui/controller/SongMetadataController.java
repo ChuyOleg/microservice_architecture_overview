@@ -30,7 +30,7 @@ public class SongMetadataController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<SongMetadataDto> getMetadata(@PathVariable Integer id) {
+  public ResponseEntity<SongMetadataDto> getMetadata(@PathVariable String id) {
     SongMetadataDto metadataDto = songMetadataService.getMetadataById(id);
     return ResponseEntity.ok(metadataDto);
   }
