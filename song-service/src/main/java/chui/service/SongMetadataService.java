@@ -9,25 +9,18 @@ import chui.model.dto.SongMetadataDto;
 import chui.model.entity.SongMetadata;
 import chui.repository.SongMetadataRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class SongMetadataService {
 
   private final SongMetadataRepository songMetadataRepository;
   private final SongMetadataMapper songMetadataMapper;
   private final CsvIdParserService csvIdParserService;
-
-  @Autowired
-  public SongMetadataService(SongMetadataRepository songMetadataRepository,
-                             SongMetadataMapper songMetadataMapper,
-                             CsvIdParserService csvIdParserService) {
-    this.songMetadataRepository = songMetadataRepository;
-    this.songMetadataMapper = songMetadataMapper;
-    this.csvIdParserService = csvIdParserService;
-  }
+  private final IdParserService idParserService;
 
   @Transactional
   public SaveSongMetadataResponseDto saveMetadata(SongMetadataDto metadataDto) {
@@ -42,8 +35,8 @@ public class SongMetadataService {
   }
 
   @Transactional(readOnly = true)
-  public SongMetadataDto getMetadataById(Integer id) {
-    Long longId = Long.valueOf(id);
+  public SongMetadataDto getMetadataById(String id) {
+    long longId = idParserService.parseId(id);
     SongMetadata entity = songMetadataRepository.findById(longId)
         .orElseThrow(() -> new SongMetadataNotFoundException(longId));
     return songMetadataMapper.toDto(entity);

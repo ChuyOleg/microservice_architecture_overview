@@ -20,6 +20,13 @@ public class GlobalExceptionHandler {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
   }
 
+  @ExceptionHandler(InvalidIdException.class)
+  public ResponseEntity<ErrorResponseDto> handleInvalidIdException(InvalidIdException ex) {
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(new ErrorResponseDto(ex.getMessage(), null, "400"));
+  }
+
   @ExceptionHandler(SongMetadataNotFoundException.class)
   public ResponseEntity<ErrorResponseDto> handleSongMetadataNotFoundException(
       SongMetadataNotFoundException ex) {
