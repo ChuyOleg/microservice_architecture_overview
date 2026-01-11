@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS song_metadata (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    artist VARCHAR(255) NOT NULL,
+    album VARCHAR(255) NOT NULL,
+    duration VARCHAR(10) NOT NULL,
+    year VARCHAR(4) NOT NULL
+);
