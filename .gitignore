@@ -37,4 +37,6 @@ out/
 .vscode/
 /TASK.md
 /api-tests/
+
+/tasks/
 /.gradle/
