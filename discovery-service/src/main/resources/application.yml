@@ -1,0 +1,13 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: discovery-service
+
+eureka:
+  client:
+    register-with-eureka: false  # server itself is not a client
+    fetch-registry: false        # server does not fetch registry
+  server:
+    enable-self-preservation: true  # recommended for production

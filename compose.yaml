@@ -21,6 +21,12 @@ services:
     volumes:
       - ./init-scripts/song-db:/docker-entrypoint-initdb.d
 
+  discovery-service:
+    build:
+      dockerfile: discovery-service/Dockerfile
+    ports:
+      - "8761:8761"
+
   resource-service:
     build:
       dockerfile: resource-service/Dockerfile
@@ -30,17 +36,20 @@ services:
       - DB_URL=${RESOURCE_DB_URL}
       - DB_USERNAME=${RESOURCE_DB_USER}
       - DB_PASSWORD=${RESOURCE_DB_PASSWORD}
-      - METADATA_API_URL=${METADATA_API_URL}
+      - EUREKA_SERVER_URL=${DISCOVERY_SERVICE_URL}
 
   song-service:
     build:
       dockerfile: song-service/Dockerfile
     ports:
-      - "8084:8084"
+      - "8084" # enables dynamic port mapping
     environment:
       - DB_URL=${SONG_DB_URL}
       - DB_USERNAME=${SONG_DB_USER}
       - DB_PASSWORD=${SONG_DB_PASSWORD}
+      - EUREKA_SERVER_URL=${DISCOVERY_SERVICE_URL}
+    deploy:
+      replicas: 2
 
 # Related settings for application.properties:
 # 

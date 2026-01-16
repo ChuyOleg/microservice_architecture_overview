@@ -2,13 +2,14 @@ package chui;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
-@EnableFeignClients
+@EnableEurekaServer
 @SpringBootApplication
-public class ResourceServiceApplication {
+public class DiscoveryServiceApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(ResourceServiceApplication.class, args);
+    SpringApplication.run(DiscoveryServiceApplication.class, args);
   }
+
 }
